@@ -1,6 +1,6 @@
 # MatherJS - Lightweight Mathematics Library
 
-###### MatherJS is simple lightweigth mathematics library written in TypeScript. There is no licencing.
+MatherJS is simple lightweigth mathematics library written in TypeScript. It is not in active development.
 
 ### The Library currently has following methods:
 
