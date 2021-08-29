@@ -5,7 +5,7 @@ const Mather = {
     isPrime: (num: number): boolean => {
         //General Variables
         let i: number;
-        let Prime: boolean = true;
+        let prime: boolean = true;
         
         //If number passed is 0 or 1 return true as 0 and 1 are not prime
         if (num == 0 || num == 1) {
@@ -21,10 +21,10 @@ const Mather = {
                 //Check if any number is divisible starting from 2
                 if (num % (i + 1) == 0) {
                     //If yes change var to false
-                    Prime = false;
+                    prime = false;
                 }
             }
-            return Prime;
+            return prime;
         }
     },
 
@@ -60,6 +60,38 @@ const Mather = {
         //Push the original number as factor and return the array
         factors.push(num);
         return factors;
+    },
+
+    //Return all factors of a number
+    factorise: (num: number): number[] => {
+        //Variables
+        let i: number = 1;
+        let temp: number = num;
+        let result: number[] = [1];
+        
+        //If the number is prime return that
+        if (Mather.isPrime(num)) {
+            result.push(num);
+        }
+        else {
+            //Run until broken
+            while(true) {
+                //Break when divided completely
+                if (temp === 1) {
+                    break;
+                }
+
+                i++;
+
+                //If divisible save the number, divide and reset i
+                if (temp % i === 0) {
+                    result.push(i);
+                    temp /= i;
+                    i = 1;
+                }
+            }
+        }
+        return result;
     },
 
     //Convert to Binary
@@ -108,10 +140,9 @@ const Mather = {
     },
 
     //Calculate the nth root of a number
-    nthRoot: (num: number, root: number): number => {
+    nthRoot: (num: number, root: number): number =>
         //Just return the number with using Math.pow with exponent as 1/num and passing through DoublePrecision
-        return Mather.toDoublePrecision(Math.pow(num, 1/root));
-    },
+        Mather.toDoublePrecision(Math.pow(num, 1/root)),
 
     //Calculate the Lowest Common Factor of two numbers
     lowestCommonFactor: (num1: number, num2: number): number => {
@@ -200,12 +231,8 @@ const Mather = {
     },  
 
     //Return degrees in radians
-    degToRadians: (num: number): number => {
-        return Mather.toDoublePrecision(num * (Math.PI/180));
-    },
+    degToRadians: (num: number): number => Mather.toDoublePrecision(num * (Math.PI/180)),
 
     //Return radians in degrees
-    radiansToDeg: (num: number): number => {
-        return Mather.toDoublePrecision(num * (180 / Math.PI));
-    }
+    radiansToDeg: (num: number): number => Mather.toDoublePrecision(num * (180 / Math.PI))
 };

@@ -4,7 +4,7 @@ var Mather = {
     isPrime: function (num) {
         //General Variables
         var i;
-        var Prime = true;
+        var prime = true;
         //If number passed is 0 or 1 return true as 0 and 1 are not prime
         if (num == 0 || num == 1) {
             return false;
@@ -19,10 +19,10 @@ var Mather = {
                 //Check if any number is divisible starting from 2
                 if (num % (i + 1) == 0) {
                     //If yes change var to false
-                    Prime = false;
+                    prime = false;
                 }
             }
-            return Prime;
+            return prime;
         }
     },
     //To Double Precision
@@ -54,6 +54,34 @@ var Mather = {
         //Push the original number as factor and return the array
         factors.push(num);
         return factors;
+    },
+    //Return all factors of a number
+    factorise: function (num) {
+        //Variables
+        var i = 1;
+        var temp = num;
+        var result = [1];
+        //If the number is prime return that
+        if (Mather.isPrime(num)) {
+            result.push(num);
+        }
+        else {
+            //Run until broken
+            while (true) {
+                //Break when divided completely
+                if (temp === 1) {
+                    break;
+                }
+                i++;
+                //If divisible save the number, divide and reset i
+                if (temp % i === 0) {
+                    result.push(i);
+                    temp /= i;
+                    i = 1;
+                }
+            }
+        }
+        return result;
     },
     //Convert to Binary
     toBinary: function (str) {
@@ -171,11 +199,7 @@ var Mather = {
         return nums[num];
     },
     //Return degrees in radians
-    degToRadians: function (num) {
-        return Mather.toDoublePrecision(num * (Math.PI / 180));
-    },
+    degToRadians: function (num) { return Mather.toDoublePrecision(num * (Math.PI / 180)); },
     //Return radians in degrees
-    radiansToDeg: function (num) {
-        return Mather.toDoublePrecision(num * (180 / Math.PI));
-    }
+    radiansToDeg: function (num) { return Mather.toDoublePrecision(num * (180 / Math.PI)); }
 };
