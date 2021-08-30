@@ -1,4 +1,5 @@
 //MatherJS Mathematics Library
+//Version 0.1
 
 const Mather = {
     //Function Checking Prime Number

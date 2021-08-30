@@ -196,10 +196,18 @@ var Mather = {
             nums.push(nums[i - 2] + nums[i - 1]);
         }
         //Return fibonacci number
-        return nums[num];
+        return nums;
     },
     //Return degrees in radians
     degToRadians: function (num) { return Mather.toDoublePrecision(num * (Math.PI / 180)); },
     //Return radians in degrees
-    radiansToDeg: function (num) { return Mather.toDoublePrecision(num * (180 / Math.PI)); }
+    radiansToDeg: function (num) { return Mather.toDoublePrecision(num * (180 / Math.PI)); },
+    //Return averages of numbers
+    average: function (nums) {
+        var sum = 0;
+        for (var i = 0; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        return (sum / nums.length);
+    }
 };
